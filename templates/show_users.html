@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+</head>
+<body>
+    {% for user in users %}
+        <span class='clickable' data-userid='{{ user.id }}' >{{ user.username }}</span><br>
+    {% endfor %}
+    <script>
+        $(".clickable").click(function(event) {
+            $.ajax({
+                url: '/blog/add_friend/',
+                type: 'post',
+                data: {
+                    user_id:$(this).data('userid')
+                },success:function()
+                {
+                    console.log('successfully added friend')
+                }
+
+            })
+
+        })
+    </script>
+</body>
+</html>
